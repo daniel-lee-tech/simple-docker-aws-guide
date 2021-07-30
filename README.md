@@ -1,4 +1,4 @@
-# Deploying a Docker Container to AWS ECR Repositories
+# Deploying a Docker Container to AWS
 
 ## Creating your Docker Image
 
@@ -103,3 +103,20 @@ Push to AWS using this command and your <repository.repositoryUri>:
 ```bash
 docker push <repository.repositoryUri>
 ```
+
+## Deploying your Docker Image
+
+### Create a Cluster
+
+In AWS, containers live in clusters when they are deployed. So we must first create a cluster. Think of a name for your cluster. You can do this in the command line like so:
+
+```bash
+aws ecs create-cluster --cluster-name <NAME_OF_YOUR_CLUSTER>
+
+# sample
+aws ecs create-cluster --cluster-name simple-docker-cluster
+```
+
+### Create a task
+
+After you create a cluster, AWS requires containers to be run in `Tasks`. Tasks can hold up to 10 containers. However for a task to be created, it needs a `Task Definition` which is a JSON file that holds metadata about your task and the containers within that task.
